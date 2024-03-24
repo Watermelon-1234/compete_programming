@@ -1,0 +1,13 @@
+{
+    "files.associations": {
+        "*.cshtml": "html",
+        "iostream": "cpp",
+        "ostream": "cpp",
+        "cmath": "cpp",
+        "iosfwd": "cpp",
+        "*.tcc": "cpp",
+        "deque": "cpp",
+        "string": "cpp",
+        "vector": "cpp"
+    }
+}
