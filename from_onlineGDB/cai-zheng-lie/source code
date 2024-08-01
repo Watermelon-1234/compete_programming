@@ -1,0 +1,83 @@
+#include <iostream>
+#include <string>
+#include <cstdlib>
+using namespace std;
+int N,A[1000]={},arr[1000]={};
+string input;
+void printA(int *a,int s){
+  for(int i=0;i<s;i++){
+    cout << a[i];
+    if(i!=s-1)
+    {
+        cout<<" ";
+    }
+  }
+  cout << endl<<flush;
+}
+
+void clear(int s)
+{
+    cin>>N;
+    for(int i=0;i<s;i++)
+    {
+        A[i]=i+1;
+    }
+}
+void dev(int first,int end)
+{
+    if(end-first=0)
+    {
+        
+
+    }
+    else
+    {
+        dev(first,first+end/2);
+        dev((first+end/2)+1,end);
+        dosth(first,end);
+    }
+    
+}
+
+dosth(int first,int end)
+{
+    
+    //int arr[end-first+1];
+    //make a num
+    
+    cin>>input; 
+    if(input=="Gotowe")
+    {
+        return 0;
+    }
+    if(input=="Tak")
+    {
+        //
+    }
+    else if(input=="Nie")
+    {
+        
+    }
+}
+/*void set_get(int last/*要牌的那一位,int num)
+{
+    if(last==m)
+    {
+        //排完
+    }
+    else
+    {
+        for(int i=num;i<size;i++)
+        {
+            index[last]=i;
+            set_get(last+1,i+1);
+        }
+    }
+}*/
+
+int main()
+{
+    cin>>N;
+    clear(N);
+    
+}
