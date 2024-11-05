@@ -59,9 +59,9 @@ T& inpr()
     return tmp;
 }
 
-#undef int
-int main() {
-    #define int int64_t
+
+signed main() {
+
     fastio;
 
     // vector<int> v = {1, 2, 3, 4, 5};

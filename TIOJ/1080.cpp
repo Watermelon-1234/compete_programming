@@ -61,19 +61,85 @@ T& inpr()
 
 vector<int> arr;
 
-#undef int
-int main() {
-    #define int int64_t
-    fastio;
-    int N;
-    rep(j,N)
+int ans = 0;
+
+void combine(int start ,int mid , int end )
+{
+    // safe;
+    // int ans = 0;
+    // debug(start,mid,end);
+    // if(end - start <= 1) return ;
+    //double pointer
+    vector<int> tmp;
+    for(int i = start,j = mid; ((i!=mid)||(j!=end)) ;)
     {
+        // safe;
+        // debug(i,j,ans);
+        // int to_push;
+        if(i == mid)
+        {
+            tmp.push_back(arr[j]);
+            j++;
+        }
+        else if(j == end)
+        {
+            tmp.push_back(arr[i]);
+            i++;
+            ans++;
+        }
+        else if(arr[i]<arr[j])
+        {
+            tmp.push_back(arr[i]);
+            i++;
+        }
+        else// (arr[j]<arr[i])
+        {
+            tmp.push_back(arr[j]);
+            j++;
+            // ans++;
+        }
+        // debug(i,j,ans);
+        // orange(tmp.begin(),tmp.end());
+    }
+    for(int i = 0;i<(end-start);i++)
+    {
+        arr[start+i] = tmp[i];
+    }
+    // orange(tmp.begin(),tmp.end());
+    
+}
+
+void merge_sort(int start,int end)//[start,end)
+{
+    // safe;
+    int mid = (start + end)/2;
+    // debug(start,mid,end);
+    if(end-start>1)
+    {
+        merge_sort(start,mid);
+        merge_sort(mid , end);
+        combine(start,mid,end);
+    }
+}
+int N,query = 0;
+// vector<int> arr;
+signed main() {
+    fastio;
+    while(cin>>N)
+    {
+        if(N==0) return 0;
+        query++;
+        arr.clear();
         rep(i,N)
         {
             arr.push_back(inpr<int>());
         }
-        cout<<"Case #"<<N<<merge_sort(0,arr.size());
-    }
+        arr.reserve(arr.size());
+        merge_sort(0,arr.size());
+        // orange(all(arr));
+        cout<<"Case #"<<query<<": "<<ans<<endl;
 
+    }
+    
     return 0;
 }

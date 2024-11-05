@@ -40,9 +40,8 @@ T& inpr()
     return tmp;
 }
 
-#undef int
-int main()
+
+signed main()
 {
-    #define int int64_t
     fastio;
 }

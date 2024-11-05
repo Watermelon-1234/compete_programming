@@ -59,42 +59,76 @@ T& inpr()
     return tmp;
 }
 
-int merge_sort(int start,int end)
-{
-    if(start == end)
-    {
-        return ;
-    }
-    else if(start+1 == end)
-    {
-        if(arr[start]>arr[end])
-        {
-            swap(arr[start],arr[end]);//review needed
-        }
-    }
-}
-
-
-int n;
-int ans=0,cnt=0;
 vector<int> arr;
 
+
+void combine(int start ,int mid , int end )
+{
+    safe;
+    debug(start,mid,end);
+    // if(end - start <= 1) return ;
+    //double pointer
+    vector<int> tmp;
+    for(int i = start,j = mid; ((i!=mid)||(j!=end)) ;)
+    {
+        debug(i,j);
+        // int to_push;
+        if(i == mid)
+        {
+            tmp.push_back(arr[j]);
+            j++;
+        }
+        else if(j == end)
+        {
+            tmp.push_back(arr[i]);
+            i++;
+        }
+        else if(arr[i]<arr[j])
+        {
+            tmp.push_back(arr[i]);
+            i++;
+        }
+        else// (arr[j]<arr[i])
+        {
+            tmp.push_back(arr[j]);
+            j++;
+        }
+    }
+    for(int i = 0;i<(end-start);i++)
+    {
+        arr[start+i] = tmp[i];
+    }
+    orange(tmp.begin(),tmp.end());
+    
+}
+
+void merge_sort(int start,int end)//[start,end)
+{
+    safe;
+    int mid = (start + end)/2;
+    debug(start,mid,end);
+    if(end-start>1)
+    {
+        merge_sort(start,mid);
+        merge_sort(mid , end);
+        combine(start,mid,end);
+    }
+}
 #undef int
 int main() {
     #define int int64_t
     fastio;
-    while(cin>>n)
+    int a;
+    while(cin>>a)
     {
-        cnt++;
-        ans = 0;
-        arr.clear();
-        rep(i,n)
-        {
-            arr.push_back(inpr<int>());
-        }
-        cout<<"Case #"<<cnt<<": "<<merge_sort(0,n)<<"\n";//[0,n)
+        arr.push_back(a);
     }
-    
+    arr.reserve(arr.size());
+    merge_sort(0,arr.size());
+    for(auto i:arr)
+    {
+        cout<<i<<" ";
+    }
     
     return 0;
 }
