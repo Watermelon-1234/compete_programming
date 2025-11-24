@@ -40,9 +40,55 @@ T& inpr()
     return tmp;
 }
 
+int n,x;
+
+int fast_pow(int base,int times)
+{
+    if(times == 0)
+    {
+        return 1;
+    }
+    else if(times&1)
+    {
+        return fast_pow(base,time-1) * bast;
+    }
+    else
+    {
+        return fast_pow(base,time/2) * fast_pow(base,time/2);
+    }
+}
+
+void compatible(int f)
+{
+    int t = sqrt(f);
+    if(f == t*t)
+    {
+        return 1;
+    }
+    return 0;
+}
+
+vector<int> sol(int sum,int cnt,vector<int> history)
+{
+    
+    if(cnt == 4)
+    {
+        if(compatible(sum))
+        {
+            history.push_back(sqrt(sum));
+        }
+    }
+    else
+    {
+        for(int )
+    }
+}
+
 #undef int
 int main()
 {
     #define int int64_t
     fastio;
+    n = inpr<int>();
+    vector<int> ans = sol(fast_pow(2,n),1,vector<int> a());
 }
