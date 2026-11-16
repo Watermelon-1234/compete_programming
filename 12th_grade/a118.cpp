@@ -1,3 +1,4 @@
+//操你奶奶的又MLE 修不好 不想修了 去找規律了
 #pragma GCC optimize("O4,unroll-loops")
 #include <bits/stdc++.h>
 #define fastio ios_base::sync_with_stdio(false),cin.tie(0);
@@ -37,6 +38,7 @@ T& inpr()
 
 int n,x;
 bool solved = 0;
+vector<int> square;
 
 int fast_pow(int base,int times)
 {
@@ -64,9 +66,10 @@ int fast_pow(int base,int times)
 //     return 0;
 // }
 
-void sol(int sum,int cnt,int pick,vector<int> history)
+void sol(int sum,int cnt,int pick,vector<int> &history)// vector改參照
 {
-    sum -= pick * pick;
+    //sum -= pick * pick;
+    sum -= square[pick];
     // debug(sum,cnt,pick);
     if(cnt == 4)
     {
@@ -80,15 +83,21 @@ void sol(int sum,int cnt,int pick,vector<int> history)
             }
             cout<<'\n';
         }
+        return ;
+    }
+    else if(sum < (4 - cnt)* square[pick])//剪枝 因為後面的數字一定只能>= n pick^2
+    {
+        return ;
     }
     else if(sum > 0)
     {
-        if(sum < pick * pick)
+        if(sum < square[pick])
         {
             return;
         }
         // safe;
-        for(int i = pick; i <= sqrt(sum); i++)
+        int _lim = sqrt(sum);
+        for(int i = pick; i <= _lim; i++)
         {
             history.push_back(i);
             sol(sum, cnt + 1, i, history);
@@ -96,17 +105,25 @@ void sol(int sum,int cnt,int pick,vector<int> history)
     }
 }
 
+
+
 #undef int
 int main()
 {
     #define int int64_t
     fastio;
+    // square.push_back(0);
+    rep(x,2* __INT16_MAX__)//用用平方表節省跑平方他媽的時間
+    {
+        square.push_back(x*x);
+    }
     n = inpr<int>();
-    for(int i = 1;i < fast_pow(2,(n%2?n:n+1)/2);i++)
+    int lim = pow(2,(n%2?n:n+1)/2);
+    for(int i = 1;i <= lim;i++)
     {
         vector<int> a;
         a.push_back(i);
-        sol(fast_pow(2,n),1,i,a);
+        sol(pow(2,n),1,i,a);
     }
     if(!solved)
     {
